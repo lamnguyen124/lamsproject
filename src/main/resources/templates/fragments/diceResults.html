@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Results</title>
+</head>
+<body>
+
+<h1>Results</h1>
+
+<h3>User guess: <span th:remove="tag" th:text="${guess}"></span></h3>
+<h3>Roll: <span th:remove="tag" th:text="${roll}"></span></h3>
+
+
+<h3>Outcome:
+    <span th:remove="tag" th:if="${result}" th:text="${'You won'}"></span>
+    <span th:remove="tag" th:if="${!result}" th:text="${'You lost :('}"></span>
+
+</h3>
+
+<a href="/roll-dice">Try Again</a>
+
+
+</body>
+</html>
