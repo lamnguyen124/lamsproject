@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,6 +40,31 @@ import java.util.List;
             viewModel.addAttribute("posts", posts);
             return "posts/index";
         }
+
+        @GetMapping("/posts/{id}/edit")
+        public String edit(@PathVariable long id, Model viewModel) {
+            Post post = postDao.findOne(id);
+            viewModel.addAttribute("post", post);
+            return "posts/edit";
+        }
+
+        @PostMapping("/posts/{id}/edit")
+        public String update(@PathVariable long id,
+                             @RequestParam(name = "title") String title,
+                             @RequestParam(name = "description") String description,
+                             Model viewModel) {
+            Post postToBeUpdated = postDao.findOne(id);
+            postToBeUpdated.setTitle(title);
+            postToBeUpdated.setDescription(description);
+            postDao.save(postToBeUpdated);
+            return "redirect:/posts/" + postToBeUpdated.getId();
+        }
+
+        @PostMapping("/posts/{id}/delete")
+        public String delete(@PathVariable long id){
+            postDao.delete(id);
+            return "redirect:/posts";
+        }
     }
 
 
@@ -53,17 +80,5 @@ import java.util.List;
 //    public String createPost() {
 //        return "posts/create";
 //    }
-//
-//
-//    @GetMapping("/index")
-//    public String welcome() {
-//        return "posts/index";
-//    }
-//
-//    @GetMapping("/show")
-//    public String show() {
-//        return "posts/show";
-//    }
-//}
-//
+
 

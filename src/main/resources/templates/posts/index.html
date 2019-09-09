@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Hello World!</title>
+    <th:block th:replace="fragments/header :: main-header('All Posts')" />
 </head>
 <body>
+<th:block th:replace="fragments/navbar :: top-nav" />
 
-<div class="card" th:each="post : ${posts}">
-    <h1 th:text="${post.title}" />
-    <p th:text="${post.description}" />
-    <input type="hidden" name="id" th:value="${post.id}" />
+<div class="row">
+    <div class="col s12 m5 l12">
+        <div class="card-panel teal" th:each="post : ${posts}">
+            <h1 th:text="${post.title}" />
+            <p th:text="${post.description}" />
+            <a th:href="@{/ads/{id}(id=${ad.id})}" class="btn btn-primary">See Ad</a>
+            <a th:href="@{/ads/{id}/edit(id=${ad.id})}" class="btn waves-effect waves-light">Edit</a>
+        </div>
+    </div>
 </div>
+<th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>
