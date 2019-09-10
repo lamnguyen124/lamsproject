@@ -65,20 +65,26 @@ import java.util.List;
             postDao.delete(id);
             return "redirect:/posts";
         }
+
+        @GetMapping("posts/create")
+        public String showCreateForm() {
+            return "posts/create";
+        }
+
+        @PostMapping("/posts/create")
+        public String createPost(
+                @RequestParam(name = "title") String titleParam,
+                @RequestParam(name = "description") String descParam
+        ) {
+            Post postToBeCreated = new Post();
+            postToBeCreated.setTitle(titleParam);
+            postToBeCreated.setDescription(descParam);
+            Post savedPost = postDao.save(postToBeCreated);
+            return "redirect:/posts/" + savedPost.getId();
+        }
     }
 
 
-//    //    GET	/posts/create	view the form for creating a post
-//    @GetMapping("posts/view")
-//    public String createPostForm() {
-//        return "/posts/index";
-//    }
-//
-//
-//    //    POST	/posts/create	create a new post
-//    @PostMapping("posts/create")
-//    public String createPost() {
-//        return "posts/create";
-//    }
+
 
 
