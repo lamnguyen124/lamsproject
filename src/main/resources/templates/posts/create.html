@@ -3,9 +3,9 @@
 <body>
 
 <main class="container">
-    <form th:action="@{/posts/create}" th:method="post">
-        <input type="text" name="title"/>
-        <input type="text" name="description"/>
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        Title:<input th:field="*{title}"/><br/>
+        Description<input th:field="*{description}"/><br/>
         <button class="btn btn-info">Create</button>
     </form>
 </main>

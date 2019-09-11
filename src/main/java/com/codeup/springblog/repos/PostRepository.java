@@ -15,7 +15,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     Post findByTitle(String title);
 
     // HQL Custom Query
-    @Query("from posts where title like %:term%")
+    @Query("from Post where title like %:term%")
     List<Post> searchByTitleLike(@Param("term") String term);
 
     Iterable<Post> findAll();

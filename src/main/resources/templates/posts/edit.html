@@ -8,14 +8,14 @@
 
 <main class="container">
 
-    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" method="post">
-        <input type="text" name="title" th:value="${post.title}" />
-        <input type="text" name="description" th:value="${post.description}" />
-        <button class="btn waves-effect waves-light">Edit</button>
+    <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="post" th:object="${post}">
+        Title:<input type="text" name="title" th:field="*{title}" /><br/>
+        Description:<input type="text" name="description" th:field="*{description}" /><br/>
+        <button class="btn btn-warning">Edit</button>
     </form>
 
     <form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post">
-        <button class="btn waves-effect waves-light">Delete</button>
+        <button class="btn btn-danger">Delete</button>
     </form>
 </main>
 
