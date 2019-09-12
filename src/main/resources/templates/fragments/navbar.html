@@ -11,6 +11,9 @@
             <li><a href=""><i class="material-icons">Blah</i></a></li>
         </ul>
     </div>
+    <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">
+        <button class="btn-link btn-danger" style="margin-top: 8px">Logout</button>
+    </form>
 </nav>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/ads/{id}")
+    @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model viewModel) {
         Post post = postDao.findOne(id);
         viewModel.addAttribute("post", post);

@@ -13,7 +13,6 @@
             <p th:text="${post.description}" />
             <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary">See Post</a>
             <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn waves-effect waves-light">Edit</a>
-            <a th:href="@{/posts/{id}/delete(id=${post.id})}" class="btn waves-effect waves-light">Delete</a>
         </div>
     </div>
 </div>
