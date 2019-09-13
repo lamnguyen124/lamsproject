@@ -10,15 +10,14 @@
 <div th:unless="${#authorization.expression('isAuthenticated()')}">
     <th:block th:replace="fragments/navbar :: top-nav" />
 </div>
+<div style="height: 100px;"></div>
 <main class="container">
-    <div class="card">
-        <h1 class="card-title" th:text="${post.title}" />
+    <div class="card-panel teal col l12 center">
+        <h1 class="card-title white-text" th:text="${post.title}" />
         <img th:each="img : ${post.images}" th:src="${img.path}" alt="stuff" />
-        <p class="card-text" th:text="${post.description}" />
+        <p class="card-text white-text" th:text="${post.description}" />
         <a href="#" th:text="${post.user.email}"></a>
     </div>
 </main>
-
-<th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>

@@ -11,6 +11,7 @@
     <th:block th:replace="fragments/navbar :: top-nav" />
 </div>
 <div style="height:100px;"></div>
+<div class="container" style="height: 300px; width: 450px">
 <h1>Log In</h1>
 <div class="alert alert-danger" th:if="${param.error}">
     Invalid Username and Password.
@@ -26,5 +27,6 @@
     <button class="btn #00b0ff light-blue accent-3" type="submit" name="action">Submit
 </button>
 </form>
+</div>
 </body>
 </html>

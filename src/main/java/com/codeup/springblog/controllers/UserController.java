@@ -46,4 +46,11 @@ public class UserController {
         }
         return "redirect:/";
     }
+
+//    @GetMapping("/users/{id}/edit")
+//    public String edit(@PathVariable long id, Model viewModel) {
+//        User user = userDao.findOne(id);
+//        viewModel.addAttribute("user", user);
+//        return "users/edit";
+//    }
 }
