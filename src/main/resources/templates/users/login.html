@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<head>
+    <th:block th:replace="fragments/header :: main-header('All Posts')" />
+</head>
 <body id="index-body" >
-
-<th:block th:replace="fragments/navbar :: top-nav" />
-
+<div sec:authorize="isAuthenticated()">
+    <th:block th:replace="fragments/navbar2 :: top-nav2" />
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <th:block th:replace="fragments/navbar :: top-nav" />
+</div>
+<div style="height:100px;"></div>
 <h1>Log In</h1>
 <div class="alert alert-danger" th:if="${param.error}">
     Invalid Username and Password.
@@ -12,16 +18,13 @@
 <div class="alert alert-warning" th:if="${param.logout}">
     You have been logged out.
 </div>
-
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>
     <input id="username" name="username" type="text" />
     <label for="password">Password</label>
     <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
+    <button class="btn #00b0ff light-blue accent-3" type="submit" name="action">Submit
+</button>
 </form>
-
-
-
 </body>
 </html>

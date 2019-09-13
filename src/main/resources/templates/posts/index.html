@@ -4,18 +4,24 @@
     <th:block th:replace="fragments/header :: main-header('All Posts')" />
 </head>
 <body>
-<th:block th:replace="fragments/navbar :: top-nav" />
-
+<div sec:authorize="isAuthenticated()">
+    <th:block th:replace="fragments/navbar2 :: top-nav2" />
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <th:block th:replace="fragments/navbar :: top-nav" />
+</div>
+<div style="height:100px;"></div>
 <div class="row">
-    <div class="col s12 m5 l12">
-        <div class="card-panel teal" th:each="post : ${posts}">
-            <h1 th:text="${post.title}" />
-            <p th:text="${post.description}" />
-            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary">See Post</a>
+    <div class="col l12 center">
+        <div class="card-panel teal col l3 center" th:each="post : ${posts}">
+            <h1 class="white-text" th:text="${post.title}" />
+            <p class="white-text" th:text="${post.description}" />
+            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn waves-effect waves-light">See Post</a>
             <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn waves-effect waves-light">Edit</a>
         </div>
     </div>
 </div>
-<th:block th:replace="fragments/footer :: my-footer"/>
+
+
 </body>
 </html>

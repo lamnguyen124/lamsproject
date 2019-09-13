@@ -92,4 +92,5 @@ public class PostController {
                 String.format("Post with the id %d has been created", savedPost.getId()));
         return "redirect:/posts/" + savedPost.getId();
     }
+
 }

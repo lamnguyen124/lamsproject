@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav class="main-nav" th:fragment="top-nav" >
+<nav class="main-nav2" th:fragment="top-nav2">
     <div class="nav-wrapper">
         <a href="/" class="brand-logo">TravelBlog</a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="/sign-up"><i class="material-icons">Register</i></a></li>
-            <li><a href="/login"><i class="material-icons">Login</i></a></li>
-            <li ><a href="/posts"><i class="material-icons">Blogs</i></a></li>
+            <li><a href="/posts/create"><i class="material-icons">Write</i></a></li>
+            <li><a href="/posts"><i class="material-icons">Blogs</i></a></li>
+            <li><a href="/logout"><i class="material-icons">Logout</i></a></li>
         </ul>
 <!--        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">-->
 <!--            <button class="btn-link btn-danger" style="margin-top: 8px">Logout</button>-->

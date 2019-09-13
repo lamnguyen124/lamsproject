@@ -4,6 +4,12 @@
     <th:block th:replace="fragments/header :: main-header('Post')" />
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
+    <th:block th:replace="fragments/navbar2 :: top-nav2" />
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <th:block th:replace="fragments/navbar :: top-nav" />
+</div>
 <main class="container">
     <div class="card">
         <h1 class="card-title" th:text="${post.title}" />
@@ -14,6 +20,5 @@
 </main>
 
 <th:block th:replace="fragments/footer :: my-footer"/>
-
 </body>
 </html>

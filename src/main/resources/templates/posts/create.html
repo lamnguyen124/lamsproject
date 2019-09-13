@@ -1,7 +1,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<head>
+    <th:block th:replace="fragments/header :: main-header('All Posts')" />
+</head>
 <body>
-
+<div sec:authorize="isAuthenticated()">
+    <th:block th:replace="fragments/navbar2 :: top-nav2" />
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <th:block th:replace="fragments/navbar :: top-nav" />
+</div>
+<div style="height:100px;"></div>
 <main class="container">
     <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
         Title:<input th:field="*{title}"/><br/>
@@ -9,7 +17,5 @@
         <button class="btn btn-info">Create</button>
     </form>
 </main>
-
-
 </body>
 </html>

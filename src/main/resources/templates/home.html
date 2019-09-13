@@ -2,36 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <th:block th:replace="fragments/header :: main-header('Home')" />
-    <link rel="stylesheet" href="/css/home.css" />
+    <th:block th:replace="fragments/header :: main-header('Welcome')" />
 </head>
 <body>
-
-<th:block th:replace="fragments/navbar :: top-nav" />
-
 <div sec:authorize="isAuthenticated()">
-    This content is only shown to authenticated users.
-
-    User ID: <span th:text="${#authentication.principal.id}"/>
-    Username: <span th:text="${#authentication.principal.username}"/>
-    Email: <span th:text="${#authentication.principal.email}"/>
+<th:block th:replace="fragments/navbar2 :: top-nav2" />
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <th:block th:replace="fragments/navbar :: top-nav" />
 </div>
 
-<br/>
-<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="" th:if="${role != 'admin'}" />
+<div class="topbar">
+    <div style="height: 100px;"></div>
+<span sec:authorize="isAuthenticated()" style="font-size: 40px; color: white;">
+    Hey <span th:text="${#authentication.principal.username}"/>! Where will we be going today?
+</span>
+    <span th:unless="${#authorization.expression('isAuthenticated()')}">
+       <span style="font-size: 40px; color: white;">
+        Time to explore and share your adventures!
+       </span>
+    </span>
+    <div class="row">
+    <div class="col l4">
+        <form action="/posts/search" method="get">
+            <input class="form" type="search" placeholder="Search" aria-label="Search" name="term" />
+            <button class="btn #00b0ff light-blue accent-3 right" type="submit" name="action">Search
+            </button>
+        </form>
+    </div>
+        <div class="col l8"></div>
+    </div>
+</div>
 
-<img src="https://www.digitalocean.com/assets/media/homepage/logos/docker-bab60eeb.png" alt="" th:if="${role == 'admin'}" />
 
-<input type="text" />
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    This content is only shown to authenticated users.-->
 
-<hr/>
+<!--    User ID: <span th:text="${#authentication.principal.id}"/>-->
+<!--    Username: <span th:text="${#authentication.principal.username}"/>-->
+<!--    Email: <span th:text="${#authentication.principal.email}"/>-->
+<!--</div>-->
 
-<ul>
-    <li class="lists" th:each="color : ${colors}" th:text="${color}"></li>
-</ul>
 
-<div class="this-wont-render" th:replace="fragments/footer :: my-footer"></div>
 
-<th:block th:replace="fragments/scripts :: scripts"></th:block>
+<th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>

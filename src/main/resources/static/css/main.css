@@ -1,3 +1,17 @@
-body {
-    background-color: blue;
+.topbar{
+    background-image: url("../img/blog.jpg");
+    width: 1440px;
+    height: 768px;
 }
+
+.card-panel{
+    height: 350px;
+    width: 350px;
+}
+
+
+/*nav {*/
+/*    height: 92px;*/
+/*    line-height: 30px;*/
+/*    width: 100%;*/
+/*}

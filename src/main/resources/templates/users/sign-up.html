@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: main-header('Home')" />
-    <link rel="stylesheet" href="/css/home.css" />
+    <th:block th:replace="fragments/header :: main-header('Sign Up')" />
 </head>
 <body id="index-body" >
-
-<th:block th:replace="fragments/navbar :: top-nav" />
-
+<div sec:authorize="isAuthenticated()">
+    <th:block th:replace="fragments/navbar2 :: top-nav2" />
+</div>
+<div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <th:block th:replace="fragments/navbar :: top-nav" />
+</div>
+<div style="height:150px;"></div>
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="username">Username</label>
@@ -19,7 +22,9 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <input value="Sign me up!" type="submit" />
+<!--    <input value="Sign me up!" type="submit" />-->
+    <button class="btn #00b0ff light-blue accent-3" type="submit" name="action">Submit
+    </button>
 </form>
 
 
