@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: main-header('Write a Blog')" />
+    <th:block th:replace="fragments/header :: main-header('Login')" />
 </head>
-<body>
+<body id="index-body" >
 <div sec:authorize="isAuthenticated()">
     <th:block th:replace="fragments/navbar2 :: top-nav2" />
 </div>
@@ -11,11 +12,13 @@
 </div>
 <div style="height:100px;"></div>
 <main class="container">
-    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
-        Title:<input th:field="*{title}"/><br/>
-        Description<input th:field="*{description}"/><br/>
-        <button class="btn btn-info">Create</button>
+    <div sec:authorize="isAuthenticated()">
+    <form th:action="@{'/users/' + ${user.id} + '/edit'}" th:method="post" th:object="${user}">
+        Username:<input type="text" name="username" th:field="*{username}" /><br/>
+        Email:<input type="text" name="email" th:field="*{email}" /><br/>
+        <button class=".uk-button-primary">Edit</button>
     </form>
+    </div>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"></script>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -56,14 +57,24 @@ public class UserController {
     @GetMapping("/users")
     public String show(Model viewModel) {
         User  getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() ;
-        System.out.println(getUser);
         return "users/account";
     }
+    @GetMapping("/users/{id}/edit")
+    public String edit(Model viewModel) {
+        User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() ;
+        return "users/edit";
+    }
 
-//    @GetMapping("/users/{id}/edit")
-//    public String edit(@PathVariable long id, Model viewModel) {
-//        User user = userDao.findOne(id);
-//        viewModel.addAttribute("user", user);
-//        return "users/edit";
-//    }
+    @PostMapping("/users/{id}/edit")
+    public String update(@PathVariable long id,
+                         @RequestParam(name = "username") String username,
+                         @RequestParam(name = "email") String email,
+                         Model viewModel) {
+        User userToBeUpdated = userDao.findOne(id);
+        userToBeUpdated.setUsername(username);
+        userToBeUpdated.setEmail(email);
+        userDao.save(userToBeUpdated);
+        return "redirect:/users/" + userToBeUpdated.getId();
+    }
+
 }
