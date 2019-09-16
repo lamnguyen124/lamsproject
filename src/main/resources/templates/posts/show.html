@@ -12,11 +12,17 @@
 </div>
 <div style="height: 100px;"></div>
 <main class="container">
-    <div class="card-panel teal col l12 center">
-        <h1 class="card-title white-text" th:text="${post.title}" />
+    <div class="uk-card">
+        <div class="uk-card-header">
+        <h1 th:text="${post.title}" />
+        </div>
+        <div class="uk-card-body">
         <img th:each="img : ${post.images}" th:src="${img.path}" alt="stuff" />
-        <p class="card-text white-text" th:text="${post.description}" />
+        <p th:text="${post.description}" />
+        </div>
+        <div class="uk-card-footer">
         <a href="#" th:text="${post.user.email}"></a>
+        </div>
     </div>
 </main>
 </body>

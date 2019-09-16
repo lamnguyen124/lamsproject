@@ -13,11 +13,17 @@
 <div style="height:100px;"></div>
 <div class="row">
     <div class="col l12 center">
-        <div class="card-panel teal col l3 center" th:each="post : ${posts}">
+        <div class="uk-card" th:each="post : ${posts}">
+            <div class="uk-card-header">
             <h1 class="white-text" th:text="${post.title}" />
-            <p class="white-text" th:text="${post.description}" />
-            <a th:href="@{/posts/{id}(id=${post.id})}" class="btn waves-effect waves-light">See Post</a>
-            <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn waves-effect waves-light">Edit</a>
+            </div>
+            <div class="uk-card-body">
+            <p th:text="${post.description}" />
+            </div>
+            <div class="uk-card-footer">
+            <a th:href="@{/posts/{id}(id=${post.id})}" class=".uk-button-primary">See Post</a>
+            <a th:href="@{/posts/{id}/edit(id=${post.id})}" class=".uk-button-primary">Edit</a>
+            </div>
         </div>
     </div>
 </div>

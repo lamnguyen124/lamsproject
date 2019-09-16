@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav class="main-nav2" th:fragment="top-nav2">
-    <div class="nav-wrapper">
-        <a href="/" class="brand-logo">TravelBlog</a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="/posts/create"><i class="material-icons">Write</i></a></li>
-            <li><a href="/posts"><i class="material-icons">Blogs</i></a></li>
-<!--            <li><a href="/account"><i class="material-icons">Account</i></a></li>-->
-            <li><a href="/logout"><i class="material-icons">Logout</i></a></li>
-        </ul>
-<!--        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" th:method="post">-->
-<!--            <button class="btn-link btn-danger" style="margin-top: 8px">Logout</button>-->
-<!--        </form>-->
-    </div>
+<!--<nav class="main-nav2" th:fragment="top-nav2">-->
+<!--    <div class="nav-wrapper">-->
+<!--        <a href="/" class="brand-logo">TravelBlog</a>-->
+<!--        <ul class="right hide-on-med-and-down">-->
+<!--            <li><a href="/posts/create">Write</a></li>-->
+<!--            <li><a href="/posts">Blogs</a></li>-->
+<!--            <li><a href="/users">Account</a></li>-->
+<!--            <li><a href="/logout">Logout</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
 
+<!--</nav>-->
+<nav class="uk-navbar-container uk-margin main-nav2" th:fragment="top-nav2">
+    <div class="uk-navbar-left">
+
+        <a class="uk-navbar-item uk-logo" href="/">TravelBlog</a>
+
+        <ul class="uk-navbar-nav">
+            <li><a href="/posts">Blogs</a></li>
+            <li><a href="/posts/create">Write</a></li>
+            <li><a href="/users">Account</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="uk-navbar-item">
+        </div>
+        <div class="uk-navbar-item">
+            <form action="javascript:void(0)">
+                <input class="uk-input uk-form-width-small" type="text" placeholder="Input"/>
+                <button class=".uk-button-primary">Button</button>
+            </form>
+        </div>
+
+    </div>
 </nav>
 </body>
 </html>
