@@ -56,12 +56,13 @@ public class UserController {
 
     @GetMapping("/users")
     public String show(Model viewModel) {
-        User  getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() ;
         return "users/account";
     }
     @GetMapping("/users/{id}/edit")
-    public String edit(Model viewModel) {
+    public String edit(Model model) {
         User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal() ;
+        System.out.println(getUser.getId());
+        model.addAttribute("user", userDao.findById(getUser.getId()));
         return "users/edit";
     }
 
@@ -74,7 +75,7 @@ public class UserController {
         userToBeUpdated.setUsername(username);
         userToBeUpdated.setEmail(email);
         userDao.save(userToBeUpdated);
-        return "redirect:/users/" + userToBeUpdated.getId();
+        return "redirect:/users/"+ userToBeUpdated.getId() + "/edit";
     }
 
 }

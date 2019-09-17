@@ -10,20 +10,19 @@
     <th:block th:replace="fragments/navbar :: top-nav" />
 </div>
 <div style="height:100px;"></div>
-<!--<div>-->
-<!--    <div sec:authorize="isAuthenticated()">-->
-<!--        User ID: <span th:text="${#authentication.principal.id}"/>-->
-<!--        Username: <span th:text="${#authentication.principal.username}"/>-->
-<!--        Email: <span th:text="${#authentication.principal.email}"/>-->
-<!--    </div>-->
-<!--</div>-->
-<div sec:authorize="isAuthenticated()">
-<form th:action="@{'/users/' + ${#authentication.principal.id} + '/edit'}" th:method="post" th:object="${user}">
-    Username:<input type="text" name="username" th:field="${#authentication.principal.username}" /><br/>
-    Email:<input type="text" name="email" th:field="${#authentication.principal.email}" /><br/>
+<div>
+    <div th:object="${user}">
+        User ID: <span th:text="${id}"/>
+        Username: <span th:text="${username}"/>
+        Email: <span th:text="${email}"/>
+    </div>
+</div>
+<form th:action="@{'/users/' + ${#authentication.principal.id} + '/edit'}" th:method="post">
+    Username:<input type="text" name="username" th:value="${#authentication.principal.username}" /><br/>
+    Email:<input type="text" name="email" th:value="${#authentication.principal.email}" /><br/>
     <button class=".uk-button-primary">Edit</button>
 </form>
-</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit-icons.min.js"></script>
