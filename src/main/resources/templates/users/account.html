@@ -10,13 +10,7 @@
     <th:block th:replace="fragments/navbar :: top-nav" />
 </div>
 <div style="height:100px;"></div>
-<div>
-    <div th:object="${user}">
-        User ID: <span th:text="${id}"/>
-        Username: <span th:text="${username}"/>
-        Email: <span th:text="${email}"/>
-    </div>
-</div>
+
 <form th:action="@{'/users/' + ${#authentication.principal.id} + '/edit'}" th:method="post">
     Username:<input type="text" name="username" th:value="${#authentication.principal.username}" /><br/>
     Email:<input type="text" name="email" th:value="${#authentication.principal.email}" /><br/>

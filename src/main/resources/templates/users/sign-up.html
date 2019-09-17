@@ -14,16 +14,24 @@
 <div class="container" style="height: 300px; width: 450px">
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+    <div class="uk-margin">
+        <div class="uk-inline">
     <label for="username">Username</label>
     <input id="username" th:field="*{username}" />
-
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline">
     <label for="email">Email</label>
     <input id="email" th:field="*{email}" />
-
+        </div>
+    </div>
+    <div class="uk-margin">
+        <div class="uk-inline">
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
-
-<!--    <input value="Sign me up!" type="submit" />-->
+        </div>
+    </div>
     <button class=".uk-button-primary" type="submit" name="action">Submit
     </button>
 </form>
